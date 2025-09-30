@@ -1,0 +1,36 @@
+
+
+<div class="container mt-4">
+  <h2>👤 All Users</h2>
+  <a href="/users/new" class="btn btn-primary mb-3">+ Add User</a>
+
+  <% if (users.length === 0) { %>
+    <p>No users found.</p>
+  <% } else { %>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Joined</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(user => { %>
+          <tr>
+            <td><a href="/users/<%= user._id %>"><%= user.name %></a></td>
+            <td><%= user.email %></td>
+            <td><%= user.createdAt.toDateString() %></td>
+            <td>
+              <a href="/users/<%= user._id %>/edit" class="btn btn-sm btn-warning">Edit</a>
+              <form action="/users/<%= user._id %>?_method=DELETE" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+</div>

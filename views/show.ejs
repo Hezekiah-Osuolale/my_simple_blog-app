@@ -10,10 +10,14 @@
     <p><%= blog.body %></p>
     <div class="mt-3">
       <a href="/blogs" class="btn btn-secondary">Back</a>
-      <a href="/blogs/<%= blog._id %>/edit" class="btn btn-warning">Edit</a>
-      <form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST" class="d-inline">
-        <button type="submit" class="btn btn-danger">Delete</button>
-      </form>
+
+      <% if (user && blog.author._id.toString() === user._id.toString()) { %>
+        <a href="/blogs/<%= blog._id %>/edit" class="btn btn-warning">Edit</a>
+        <form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST" style="display:inline;">
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      <% } %>
+
     </div>
   </div>
 </div>

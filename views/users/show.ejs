@@ -1,0 +1,13 @@
+
+
+<div class="container mt-4">
+  <h2>👤 <%= user.name %></h2>
+  <p><strong>Email:</strong> <%= user.email %></p>
+  <p><strong>Joined:</strong> <%= user.createdAt.toDateString() %></p>
+
+  <a href="/users/<%= user._id %>/edit" class="btn btn-warning">Edit</a>
+  <form action="/users/<%= user._id %>?_method=DELETE" method="POST" style="display:inline;">
+    <button type="submit" class="btn btn-danger">Delete</button>
+  </form>
+  <a href="/users" class="btn btn-secondary">Back</a>
+</div>
