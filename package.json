@@ -1,0 +1,32 @@
+{
+  "name": "my_simple_blog-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hezekiah-Osuolale/my_simple_blog-app.git"
+  },
+  "author": "osuolale hezekiah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hezekiah-Osuolale/my_simple_blog-app/issues"
+  },
+  "homepage": "https://github.com/Hezekiah-Osuolale/my_simple_blog-app#readme",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "env": "^0.0.2",
+    "express": "^5.1.0",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.18.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.18.3",
+    "multer": "^2.0.2"
+  }
+}
