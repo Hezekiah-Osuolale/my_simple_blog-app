@@ -51,7 +51,7 @@ web_modules/
 .npm
 
 node_modules/
-uploads/
+
 .env
 
 # Optional eslint cache

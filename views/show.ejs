@@ -1,26 +1,96 @@
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #fefefe;
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.8;
+      color: #333;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
 
-<div class="card">
-  <div class="card-body">
-    <h2><%= blog.title %></h2>
+    .blog-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+    }
+
+    .blog-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .blog-meta {
+      color: #888;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .blog-content img {
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 5px;
+    }
+
+    .blog-content p {
+      margin-bottom: 1.2rem;
+    }
+
+    .blog-content blockquote {
+      border-left: 4px solid #0d6efd;
+      margin: 20px 0;
+      padding-left: 15px;
+      color: #555;
+      font-style: italic;
+      background-color: #f1f5fb;
+      border-radius: 5px;
+    }
+
+    .btn-back {
+      display: inline-block;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 576px) {
+      .blog-title {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+
+  <div class="blog-container">
+    <h1 class="blog-title"><%= blog.title %></h1>
+    <p class="blog-meta">Posted on <%= blog.createdAt.toLocaleDateString() %></p>
     <% if (blog.image) { %>
       <img src="/uploads/<%= blog.image %>" alt="Blog Image" class="img-fluid">
     <% } %>
     
-    <p><%= blog.body %></p>
-    <div class="mt-3">
-      <a href="/blogs" class="btn btn-secondary">Back</a>
-
-      <% if (user && blog.author._id.toString() === user._id.toString()) { %>
-        <a href="/blogs/<%= blog._id %>/edit" class="btn btn-warning">Edit</a>
-        <form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST" style="display:inline;">
-          <button class="btn btn-danger">Delete</button>
-        </form>
-      <% } %>
-
+   
+    <div class="blog-content">
+      <%- blog.body %>
     </div>
+
+    <a href="/blogs" class="btn btn-primary btn-back">← Back to Blogs</a>
+    <% if (user && blog.author._id.toString() === user._id.toString()) { %>
+      <a href="/blogs/<%= blog._id %>/edit" class="btn btn-warning">Edit</a>
+      <form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST" style="display:inline;">
+        <button class="btn btn-danger">Delete</button>
+      </form>
+    <% } %>
+
   </div>
-</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
 
 
 

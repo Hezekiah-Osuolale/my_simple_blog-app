@@ -1,19 +1,43 @@
-<h1 class="mb-4">Recent Posts</h1>
-<div class="row">
-  <% blogs.forEach(blog => { %>
-    <div class="col-md-4">
-      <div class="card mb-4">
-        <% if (blog.image) { %>
-          <img src="/uploads/<%= blog.image %>" alt="Blog Image" class="img-fluid">
-        <% } %>
-        <div class="card-body">
-          <h5>
-            <a href="/blogs/<%= blog._id %>" class="blog-title"><%= blog.title %></a>
-          </h5>
-          <p class="card-text"><%= blog.body.substring(0, 120) %>...</p>
+
+  <style>
+    body { background-color: #f8f9fa; padding-top: 50px; }
+    .blog-card { transition: transform 0.2s; }
+    .blog-card:hover { transform: scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .blog-content img { max-width: 100%; height: auto; }
+  </style>
+
+
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="text-primary">My Blog</h1>
+    <a href="/blogs/new" class="btn btn-success">Create New Blog</a>
+  </div>
+
+  <div class="row g-4">
+    <% blogs.forEach(blog => { %>
+      <div class="col-md-6 col-lg-4">
+        <div class="card blog-card h-100">
+          <% if (blog.image) { %>
+            <img src="/uploads/<%= blog.image %>" alt="Blog Image" class="img-fluid">
+          <% } %>
+          <div class="card-body">
+            <h5>
+              <a href="/blogs/<%= blog._id %>" class="blog-title"><%= blog.title %></a>
+            </h5>
+            <p class="card-text"><%- blog.body.substring(0, 120) -%>...</p>
           <a href="/blogs/<%= blog._id %>" class="btn btn-primary btn-sm">Read More</a>
+          </div>
+          <div class="card-footer text-muted">
+            <small><%= blog.createdAt.toLocaleDateString() %></small>
+          </div>
         </div>
       </div>
-    </div>
-  <% }) %>
+    <% }) %>
+  </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
