@@ -11,6 +11,7 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const initializePassport = require("./config/passport");
 const authRoutes = require("./routes/authRoutes");
+const Blog = require("./models/Blog");
 
 const { Console } = require("console");
 const app = express();
@@ -70,8 +71,18 @@ app.use("/users", userRoutes);
 app.use("/auth", authRoutes);
 
 // Root route
-app.get("/", (req, res) => {
-  res.redirect("/blogs");
+app.get("/", async (req, res) => {
+  try {
+    // Show latest 3 blogs on landing page
+    const blogs = await Blog.find()
+      .populate("author")
+      .sort({ createdAt: -1 })
+      .limit(3);
+    res.render("landing", { blogs });
+  } catch (err) {
+    req.flash("error_msg", "Could not load blogs");
+    res.render("landing", { blogs: [] });
+  }
 });
 
 // Server
